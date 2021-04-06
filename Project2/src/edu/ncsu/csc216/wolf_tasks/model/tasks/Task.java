@@ -99,9 +99,8 @@ public class Task {
 		
 	}
 	
-	public Object clone() {
-		return null;
-		
+	public Object clone() throws CloneNotSupportedException {
+		throw new CloneNotSupportedException();
 	}
 	/**
 	 * makes task into a string
