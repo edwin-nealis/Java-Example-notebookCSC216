@@ -15,7 +15,7 @@ public class ActiveTaskList extends AbstractTaskList {
 	 * creates said list.
 	 */
 	public ActiveTaskList() {
-		
+		super(ACTIVE_TASKS_NAME, 0);
 	}
 	
 	/**
