@@ -85,7 +85,9 @@ public abstract class AbstractTaskList {
 	public void completeTask(Task t) {
 		
 	}
-	/** gets the tasks as a 2d array of objects */
+	/** gets the tasks as a 2d array of objects 
+	 * 
+	 */
 	public abstract String[][] getTasksAsArray();
 	
 

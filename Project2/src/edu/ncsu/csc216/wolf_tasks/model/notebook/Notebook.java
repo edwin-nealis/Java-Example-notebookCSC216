@@ -27,7 +27,7 @@ public class Notebook {
 	 * taskList is constructed as a sorted list and
 	 * active task list is constructed and set to current taskl list
 	 * is changed is initialized to true. 
-	 * @param notebookName
+	 * @param notebookName notebook name
 	 */
 	public Notebook(String notebookName) {
 		
@@ -132,7 +132,7 @@ public class Notebook {
 	 * @param recurring if task is recurring
 	 * @param active if task is active
 	 */
-	public void editTask(int idx, String taskName, String taskdescription, boolean recurring, boolean active) {
+	public void editTask(int idx, String taskName, String taskDescription, boolean recurring, boolean active) {
 		
 	}
 }

@@ -29,6 +29,7 @@ public class TaskList extends AbstractTaskList implements Comparable<TaskList> {
 	
 	/**
 	 * compares tasks by name
+	 * @param tl task list to be compared
 	 * @return 0 if same 1 if larger -1 if smaller
 	 */
 	public int compareTo(TaskList tl) {

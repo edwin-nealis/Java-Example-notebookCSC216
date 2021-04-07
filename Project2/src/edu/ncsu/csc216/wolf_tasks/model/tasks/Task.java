@@ -114,6 +114,10 @@ public class Task {
 		
 	}
 	
+	/**
+	 * clones object
+	 * @throws CloneNotSupportedException if colne can not be done
+	 */
 	public Object clone() throws CloneNotSupportedException {
 		throw new CloneNotSupportedException();
 	}
