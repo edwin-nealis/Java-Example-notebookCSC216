@@ -40,6 +40,10 @@ public class Notebook {
 		
 	}
 	
+	/**
+	 * gets notebook name
+	 * @return notebook name
+	 */
 	public String getNotebookName() {
 		return null;
 	}
@@ -50,10 +54,17 @@ public class Notebook {
 	private void setNotebookName(String notebookName) {
 		
 	}
+	/**
+	 * checks if notebook is changed
+	 * @return true if changed false if not
+	 */
 	public boolean isChanged() {
 		return false;
 	}
 	
+	/**
+	 * sets if not book is changed
+	 */
 	public void setChanged() {
 		
 	}
@@ -65,6 +76,10 @@ public class Notebook {
 		
 	}
 	
+	/**
+	 * gets task lists names as a string array
+	 * @return task lists names as string array
+	 */
 	public String[] getTaskListsNames() {
 		return null;
 	}
@@ -82,6 +97,10 @@ public class Notebook {
 	public void setCurrentTaskList(String taskListName) {
 		
 	}
+	/**
+	 * gets the current task list
+	 * @return task list
+	 */
 	public AbstractTaskList getCurrentTaskList() {
 		return null;
 	}
@@ -92,14 +111,28 @@ public class Notebook {
 	public void editTaskList(String taskListName) {
 		
 	}
-	
+	/**
+	 * removes the current task list
+	 */
 	public void removeTaskList() {
 		
 	}
+	/**
+	 * adds a task to current task list
+	 * @param t task to be added
+	 */
 	public void addTask(Task t) {
 		
 	}
-	public void editTask(int idx, String text, String text2, boolean selected, boolean selected2) {
+	/**
+	 * edits a task at index
+	 * @param idx index
+	 * @param taskName name of task
+	 * @param taskDescription description of task
+	 * @param recurring if task is recurring
+	 * @param active if task is active
+	 */
+	public void editTask(int idx, String taskName, String taskdescription, boolean recurring, boolean active) {
 		
 	}
 }

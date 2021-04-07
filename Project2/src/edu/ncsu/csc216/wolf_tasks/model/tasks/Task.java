@@ -1,5 +1,13 @@
 package edu.ncsu.csc216.wolf_tasks.model.tasks;
-
+/**
+ * task is an object with fields task name, task descripition, recurring, and active
+ * task has a constructor that sets all fields task also has getters and setters for all fields.
+ * there is also a method to complete a task, a method to get the name of the task list the task is in, and 
+ * a method that adds task to a task list.
+ * task also includes a colne and to string method.
+ * @author edwin
+ *
+ */
 public class Task {
 	/** holds tasks name */
 	private String taskName;
@@ -12,13 +20,21 @@ public class Task {
 	
 	/** holds if task is active or not */
 	private boolean active;
-	
+	/**
+	 * constructor for task sets all fields 
+	 * @param taskName name of task
+	 * @param taskDescription description of task
+	 * @param recurring if recurring
+	 * @param active if active
+	 */
 	public Task(String taskName, String taskDescription, boolean recurring, boolean active) {
 
 	}
 
+	/**
+	 * completes a task
+	 */
 	public void completeTask() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -57,7 +73,6 @@ public class Task {
 	 * @return true if active false if not
 	 */
 	public boolean isActive() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	
@@ -73,7 +88,7 @@ public class Task {
 	 * @return true if recurring false if not
 	 */
 	public boolean isRecurring() {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 	

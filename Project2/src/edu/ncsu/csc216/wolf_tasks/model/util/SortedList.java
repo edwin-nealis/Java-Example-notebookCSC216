@@ -67,7 +67,12 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	public int size() {
 		return 0;
 	}
-	
+	/**
+	 * inner class that creates an object list node that has two fields data and nextnode
+	 * 
+	 * @author edwin
+	 *
+	 */
 	public class ListNode {
 		/** data to be held by List node*/
 		public E data;

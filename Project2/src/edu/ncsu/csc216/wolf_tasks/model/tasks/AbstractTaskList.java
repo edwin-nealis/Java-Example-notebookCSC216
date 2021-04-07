@@ -1,7 +1,15 @@
 package edu.ncsu.csc216.wolf_tasks.model.tasks;
 
 import edu.ncsu.csc216.wolf_tasks.model.util.ISwapList;
-
+/**
+ * abstract task list is an abstract class that represents a task list object 
+ * class has one abstract method that get tasks as a 2d array. the class has two fields task list name, and completed
+ * task count both are set by the constructor. class also contains getters for both fields an a setter for name.
+ * class also has methods to add and remove a task as well as complete a task. There is also a method that 
+ * gets tasks as an ISwapList of tasks.
+ * @author edwin
+ *
+ */
 public abstract class AbstractTaskList {
 	/** name of task list */
 	private String taskListName;
@@ -30,7 +38,10 @@ public abstract class AbstractTaskList {
 	public void setTaskListName() {
 		
 	}
-	
+	/**
+	 * gets task as a list of type ISwapList
+	 * @return list contaning all tasks
+	 */
 	public ISwapList<Task> getTasks() {
 		return null;
 	}
@@ -43,10 +54,19 @@ public abstract class AbstractTaskList {
 		return 0;
 	}
 
+	/**
+	 * adds a task to the task list
+	 * @param t task to be added
+	 */
 	public void addTask(Task t) {
 		
 	}
 	
+	/**
+	 * removes a task from the task list
+	 * @param idx index
+	 * @return task that was removed
+	 */
 	public Task removeTask(int idx) {
 		return null;
 	}
