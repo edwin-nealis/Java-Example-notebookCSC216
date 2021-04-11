@@ -11,6 +11,8 @@ package edu.ncsu.csc216.wolf_tasks.model.util;
 public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	/** holds size of list */
 	private int size;
+	
+	private ListNode front;
 
 	/**
 	 * adds an element to the list in sorted order
@@ -18,7 +20,9 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 */
 	@Override
 	public void add(E element) {
-		
+		if (element == null) {
+			throw new NullPointerException("Cannot add null element.");
+		}
 	}
 
 	/**

@@ -14,8 +14,13 @@ public class SwapListTest {
 	 * tests swap list
 	 */
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testAddAndRemove() {
+		SwapList<String> list = new SwapList<String>();
+		list.add("a");
+		assertEquals(list.size(), 1);
+		
+		
+		
 	}
 
 }

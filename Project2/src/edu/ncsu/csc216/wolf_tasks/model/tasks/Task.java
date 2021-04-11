@@ -1,4 +1,7 @@
 package edu.ncsu.csc216.wolf_tasks.model.tasks;
+
+import edu.ncsu.csc216.wolf_tasks.model.util.SwapList;
+
 /**
  * task is an object with fields task name, task descripition, recurring, and active
  * task has a constructor that sets all fields task also has getters and setters for all fields.
@@ -20,6 +23,8 @@ public class Task {
 	
 	/** holds if task is active or not */
 	private boolean active;
+	/** list of tasklists*/
+	private SwapList<AbstractTaskList> taskLists;
 	/**
 	 * constructor for task sets all fields 
 	 * @param taskName name of task
@@ -28,7 +33,11 @@ public class Task {
 	 * @param active if active
 	 */
 	public Task(String taskName, String taskDescription, boolean recurring, boolean active) {
-
+		setTaskName(taskName);
+		setTaskDescription(taskDescription);
+		setActive(active);
+		setRecurring(recurring);
+		taskLists = new SwapList<AbstractTaskList>();
 	}
 
 	/**
@@ -43,14 +52,18 @@ public class Task {
 	 * @return task name
 	 */
 	public String getTaskName() {
-		return null;
+		return taskName;
 	}
 	
 	/**
 	 * sets the tasks name
+	 * @param taskName name to be set
 	 */
-	public void setTaskName() {
-		
+	public void setTaskName(String taskName) {
+		if (taskName == null || "".equals(taskName)) {
+			throw new IllegalArgumentException("Incomplete task information.");
+		}
+		this.taskName = taskName;
 	}
 
 	/**
@@ -58,14 +71,18 @@ public class Task {
 	 * @return task description
 	 */
 	public String getTaskDescription() {
-		return null;
+		return taskDescription;
 	}
 	
 	/**
 	 * sets tasks description
+	 * @param taskDescription tasks description
 	 */
-	public void setTaskDescription() {
-		
+	public void setTaskDescription(String taskDescription) {
+		if (taskDescription == null || "".equals(taskDescription)) {
+			throw new IllegalArgumentException("Incomplete task information.");
+		}
+		this.taskDescription = taskDescription;
 	}
 	
 	/**
@@ -73,14 +90,15 @@ public class Task {
 	 * @return true if active false if not
 	 */
 	public boolean isActive() {
-		return false;
+		return this.active;
 	}
 	
 	/**
 	 * sets if task is active or not
+	 * @param active if task is active
 	 */
-	public void setActive() {
-		
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	/**
@@ -88,15 +106,15 @@ public class Task {
 	 * @return true if recurring false if not
 	 */
 	public boolean isRecurring() {
-
-		return false;
+		return this.recurring;
 	}
 	
 	/**
 	 * sets if task is recurring or not
+	 * @param recurring if task is recurring
 	 */
-	public void setRecurring() {
-		
+	public void setRecurring(boolean recurring) {
+		this.recurring = recurring;
 	}
 	
 	/**
@@ -104,14 +122,17 @@ public class Task {
 	 * @return task lists name
 	 */
 	public String getTaskListName() {
-		return null;
+		return this.taskLists.get(0).getTaskListName();
 	}
 	/**
 	 * adds a task list
 	 * @param atl task list to be added
 	 */
 	public void addTaskList(AbstractTaskList atl) {
-		
+		if (atl == null || "".equals(atl)) {
+			throw new IllegalArgumentException("Incomplete task information.");
+		}
+		taskLists.add(atl);
 	}
 	
 	/**
@@ -120,7 +141,13 @@ public class Task {
 	 * @return clone of object
 	 */
 	public Object clone() throws CloneNotSupportedException {
-		throw new CloneNotSupportedException();
+		if (taskLists.size() == 0) {
+			throw new CloneNotSupportedException("Cannot clone.");
+		}
+		SwapList<AbstractTaskList> temp = this.taskLists;
+		Task tempT = new Task(this.taskName, this.taskDescription, this.recurring, this.active);
+		tempT.taskLists = temp;
+		return tempT;
 	}
 	/**
 	 * makes task into a string

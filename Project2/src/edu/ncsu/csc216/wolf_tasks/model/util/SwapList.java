@@ -8,18 +8,23 @@ package edu.ncsu.csc216.wolf_tasks.model.util;
  *
  * @param <E> type for SwapList: must implement Comparable
  */
-public class SwapList<E extends Comparable<E>> implements ISwapList<E> {
+public class SwapList<E> implements ISwapList<E> {
 	/** initial capacity */
-	private static final int INITIAL_CAPACIRY = 10;
+	private static final int INITIAL_CAPACITY = 10;
 	/** holds list */
 	private E[] list;
 	/**holds size of list */
 	private int size;
+	
+	/** stores the capacity */
+	private int capacity;
 	/**
-	 * constructor for list creats an array for the list and sets size to 0.
+	 * constructor for list creates an array for the list and sets size to 0.
 	 */
-	SwapList() {
-		
+	@SuppressWarnings("unchecked")
+	public SwapList() {
+		list = (E[]) new Object[INITIAL_CAPACITY];
+		size = 0;
 	}
 	/**
 	 * addes an element to the list
@@ -27,15 +32,28 @@ public class SwapList<E extends Comparable<E>> implements ISwapList<E> {
 	 */
 	@Override
 	public void add(E element) {
-		
+		if (element == null) {
+			throw new NullPointerException("Cannot add null element.");
+		}
+		checkCapacity(capacity);
+		list[size -1] = element;
+		size++;
 	}
 
 	/**
 	 * helper method that checks if a capacity is valid
 	 * @param capacity capacity to be checked
 	 */
+	@SuppressWarnings("unchecked")
 	private void checkCapacity(int capacity) {
-		
+		if (size == capacity) {
+			E[] temp = list;
+			list = (E[]) new Object[capacity * 2];
+			this.capacity = capacity * 2;
+			for (int i = 0; i < size; i++) {
+				list[i] = temp[i];
+			}
+		}
 	}
 	/**
 	 * removes an element from the list at given index
@@ -52,7 +70,9 @@ public class SwapList<E extends Comparable<E>> implements ISwapList<E> {
 	 * @param idx index
 	 */
 	private void checkIndex(int idx) {
-		
+		if (idx < 0 || idx >= size) {
+			throw new IndexOutOfBoundsException("Invalid Index.");
+		}
 	}
 
 	/**
@@ -61,7 +81,7 @@ public class SwapList<E extends Comparable<E>> implements ISwapList<E> {
 	 */
 	@Override
 	public void moveUp(int idx) {
-		
+		checkIndex(idx);
 	}
 
 	/**
@@ -70,7 +90,7 @@ public class SwapList<E extends Comparable<E>> implements ISwapList<E> {
 	 */
 	@Override
 	public void moveDown(int idx) {
-		
+		checkIndex(idx);
 	}
 
 	/**
@@ -79,7 +99,7 @@ public class SwapList<E extends Comparable<E>> implements ISwapList<E> {
 	 */
 	@Override
 	public void moveToFront(int idx) {
-		
+		checkIndex(idx);
 	}
 
 	/**
@@ -88,7 +108,7 @@ public class SwapList<E extends Comparable<E>> implements ISwapList<E> {
 	 */
 	@Override
 	public void moveToBack(int idx) {
-		
+		checkIndex(idx);
 	}
 
 	/**
@@ -98,7 +118,8 @@ public class SwapList<E extends Comparable<E>> implements ISwapList<E> {
 	 */
 	@Override
 	public E get(int idx) {
-		return null;
+		checkIndex(idx);
+		return list[idx];
 	}
 
 	/**
@@ -107,7 +128,7 @@ public class SwapList<E extends Comparable<E>> implements ISwapList<E> {
 	 */
 	@Override
 	public int size() {
-		return 0;
+		return size;
 	}
 
 }
