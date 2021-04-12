@@ -17,7 +17,7 @@ public class SwapList<E> implements ISwapList<E> {
 	private int size;
 	
 	/** stores the capacity */
-	private int capacity;
+	private int capacity = 10;
 	/**
 	 * constructor for list creates an array for the list and sets size to 0.
 	 */
@@ -27,7 +27,7 @@ public class SwapList<E> implements ISwapList<E> {
 		size = 0;
 	}
 	/**
-	 * addes an element to the list
+	 * Adds an element to the list
 	 * @param element element to be added
 	 */
 	@Override
@@ -36,7 +36,7 @@ public class SwapList<E> implements ISwapList<E> {
 			throw new NullPointerException("Cannot add null element.");
 		}
 		checkCapacity(capacity);
-		list[size -1] = element;
+		list[size] = element;
 		size++;
 	}
 
@@ -62,7 +62,8 @@ public class SwapList<E> implements ISwapList<E> {
 	 */
 	@Override
 	public E remove(int idx) {
-		return null;
+		checkIndex(idx);
+		return list[idx];
 	}
 	
 	/**
