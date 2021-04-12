@@ -83,6 +83,10 @@ public class SwapList<E> implements ISwapList<E> {
 	@Override
 	public void moveUp(int idx) {
 		checkIndex(idx);
+		checkIndex(idx - 1);
+		E temp = list[idx - 1];
+		list[idx - 1] = list[idx];
+		list[idx] = temp;
 	}
 
 	/**
@@ -92,6 +96,10 @@ public class SwapList<E> implements ISwapList<E> {
 	@Override
 	public void moveDown(int idx) {
 		checkIndex(idx);
+		checkIndex(idx + 1);
+		E temp = list[idx + 1];
+		list[idx + 1] = list[idx];
+		list[idx] = temp;
 	}
 
 	/**
@@ -101,6 +109,13 @@ public class SwapList<E> implements ISwapList<E> {
 	@Override
 	public void moveToFront(int idx) {
 		checkIndex(idx);
+		E temp = list[idx];
+		if (idx != 0) {
+		for (int i = idx; i > 0; i--) {
+			list[i] = list[i - 1];
+		}
+		list[0] = temp;
+		}
 	}
 
 	/**
@@ -110,6 +125,14 @@ public class SwapList<E> implements ISwapList<E> {
 	@Override
 	public void moveToBack(int idx) {
 		checkIndex(idx);
+		E temp = list[idx];
+		if (idx != size - 1) {
+		for (int i = idx; i < size - 1; i++) {
+			list[i] = list[i + 1];
+		}
+		list[size - 1] = temp;
+		}
+		
 	}
 
 	/**
