@@ -11,8 +11,13 @@ package edu.ncsu.csc216.wolf_tasks.model.util;
 public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	/** holds size of list */
 	private int size;
-	
+	/** keeps track of the first node in list */
 	private ListNode front;
+	
+	public SortedList() {
+		front = new ListNode(null, null);
+		size =0;
+	}
 
 	/**
 	 * adds an element to the list in sorted order
@@ -23,6 +28,43 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 		if (element == null) {
 			throw new NullPointerException("Cannot add null element.");
 		}
+		ListNode check = front;
+		for (int i = 0; i < size; i++) {
+			if (element.equals(check.data)) {
+				throw new IllegalArgumentException("Cannot add duplicate element");
+			}
+		}
+		if (size == 0) {
+			front = new ListNode(element, null);
+			size++;
+			return;
+		}
+		if (size == 1) {
+			if (front.data.compareTo(element) >= 0) {
+				front = new ListNode(element, front);
+				size++;
+				return;
+			}
+			else {
+				front.next = new ListNode(element, null);
+				size++;
+				return;
+			}
+		}
+		ListNode current = front;
+		ListNode next = current.next;
+		while (next != null) {
+			if (next.data.compareTo(element) >= 0) {
+				current.next = new ListNode(element, next);
+				size++;
+				return;
+			}
+			current = current.next;
+			next = next.next;
+		}
+		next = new ListNode(element, null);
+		current.next = next;
+		size++;
 	}
 
 	/**
@@ -32,14 +74,31 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 */
 	@Override
 	public E remove(int idx) {
-		return null;
+		checkIndex(idx);
+		E rtrn = null;
+		if (idx == 0) {
+			rtrn = front.data;
+			front = front.next;
+			size--;
+			return rtrn;
+		}
+		ListNode curr = front;
+		for (int i = 0; i < idx - 1; i++) {
+			curr = curr.next;
+		}
+		rtrn = curr.next.data;
+		curr.next = curr.next.next;
+		size--;
+		return rtrn;
 	}
 	/**
 	 * helper method to see if an index is valid
 	 * @param idx index
 	 */
 	private void checkIndex(int idx) {
-		
+		if (idx < 0 || idx >= size) {
+			throw new IndexOutOfBoundsException("Invalid index.");
+		}
 	}
 
 	/**
@@ -49,6 +108,13 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 */
 	@Override
 	public boolean contains(E element) {
+		ListNode curr = front;
+		for (int i = 0; i < size; i++) {
+			if (curr.data.compareTo(element) == 0) {
+				return true;
+			}
+			curr = curr.next;
+		}
 		return false;
 	}
 	
@@ -60,7 +126,12 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 */
 	@Override
 	public E get(int idx) {
-		return null;
+		checkIndex(idx);
+		ListNode curr = front;
+		for (int i = 0; i < idx; i++) {
+			curr = curr.next;
+		}
+		return curr.data;
 	}
 
 	/**
@@ -69,7 +140,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 */
 	@Override
 	public int size() {
-		return 0;
+		return size;
 	}
 	/**
 	 * inner class that creates an object list node that has two fields data and nextnode
@@ -80,13 +151,16 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	public class ListNode {
 		/** data to be held by List node*/
 		public E data;
+		/** next list node */
+		public ListNode next;
 		/**
 		 * constructor of ListNode sets data and the nextNode in list
 		 * @param data data
 		 * @param nextNode next node
 		 */
 		public ListNode(E data, ListNode nextNode) {
-			
+			this.data = data;
+			next = nextNode;
 		}
 	}
 }
