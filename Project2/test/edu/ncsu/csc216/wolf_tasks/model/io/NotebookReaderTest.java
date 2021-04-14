@@ -20,7 +20,7 @@ public class NotebookReaderTest {
 
 	@Test
 	public void testReadNoteBookFile() {
-		Notebook nb = NotebookReader.readNotebookFile(file);
+		Notebook nb = NotebookReader.readNodebookFile(file);
 		assertEquals(nb.getNotebookName(), "School");
 		assertEquals(nb.getTaskListsNames()[0],taskLists[0]);
 		assertEquals(nb.getTaskListsNames()[1],taskLists[1]);

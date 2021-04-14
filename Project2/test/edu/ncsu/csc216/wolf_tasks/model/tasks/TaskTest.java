@@ -75,5 +75,57 @@ public class TaskTest {
 		assertEquals(t3.toString(), "* name\ndescription\n");
 		assertEquals(t4.toString(), "* name,recurring\ndescription\n");
 	}
+	
+	/**
+	 * tests the complete task method
+	 */
+	@Test
+	public void testCompleteTask() {
+		Task t = new Task("name", "description", false, true);
+		Task t2 = new Task("name", "description", true, true);
+		TaskList tl = new TaskList("list 1", 0);
+		TaskList tl2 = new TaskList("list 2", 0);
+		tl.addTask(t);
+		tl2.addTask(t2);
+		try {
+			t.completeTask();
+			assertEquals(tl.getCompletedCount(), 1);
+			assertEquals(tl.getTasks().size(), 0);
+		} catch (CloneNotSupportedException e) {
+			fail();
+		}
+		try {
+			t2.completeTask();
+			assertEquals(tl2.getCompletedCount(), 1);
+			assertEquals(tl2.getTasks().size(), 1);
+			String[][] array = new String[][] { {"list 2", "name"} };
+			assertEquals(tl2.getTasksAsArray()[0][0], array[0][0]);
+			assertEquals(tl2.getTasksAsArray()[0][1], array[0][1]);
+		} catch (CloneNotSupportedException e) {
+			fail();
+		}
+		
+	}
+	/**
+	 * tests invalid construction
+	 */
+	@Test
+	public void testInvalidConstruction() {
+		Task t = null;
+		try {
+			t = new Task("valid", null, false, false);
+			fail();
+		}
+		catch (IllegalArgumentException e) {
+			assertNull(t);
+		}
+		try {
+			t = new Task("", "valid", false, false);
+			fail();
+		}
+		catch (IllegalArgumentException e) {
+			assertNull(t);
+		}
+	}
 
 }

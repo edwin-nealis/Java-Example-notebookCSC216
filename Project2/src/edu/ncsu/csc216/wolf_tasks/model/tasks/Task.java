@@ -42,9 +42,21 @@ public class Task {
 
 	/**
 	 * completes a task
+	 * @throws CloneNotSupportedException if clone cant not be done
 	 */
-	public void completeTask() {
-		
+	public void completeTask() throws CloneNotSupportedException {
+		for (int i = 0; i < taskLists.size(); i++) {
+			taskLists.get(i).completeTask(this);
+			if (this.isRecurring()) {
+				try {
+					Task t = (Task) this.clone();
+					taskLists.get(i).addTask(t);
+				} catch (CloneNotSupportedException e) {
+					throw new CloneNotSupportedException("Cannot clone.");
+				}
+				
+			}
+		}
 	}
 
 	/**
@@ -129,7 +141,7 @@ public class Task {
 	 * @param atl task list to be added
 	 */
 	public void addTaskList(AbstractTaskList atl) {
-		if (atl == null || "".equals(atl)) {
+		if (atl == null) {
 			throw new IllegalArgumentException("Incomplete task information.");
 		}
 		for (int i = 0; i < taskLists.size(); i++) {
