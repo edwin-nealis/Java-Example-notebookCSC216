@@ -20,10 +20,10 @@ public class NotebookWriter {
 	/**
 	 * writes notebook to the povided file
 	 * @param f file 
-	 * @param s notebook name
+	 * @param notebookName notebook name
 	 * @param sortedList list of TaskLists
 	 */
-	public static void writeNotebookFile(File f, String s, ISortedList<TaskList> sortedList) {
+	public static void writeNotebookFile(File f, String notebookName, ISortedList<TaskList> sortedList) {
 		
 	}
 }

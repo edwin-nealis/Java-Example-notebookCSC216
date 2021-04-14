@@ -1,4 +1,6 @@
 package edu.ncsu.csc216.wolf_tasks.model.tasks;
+
+
 /**
  * active task list is a object that creates an active task list to hold active task
  * class has a constructor and methods to add a task clear tasks and set the task list name. class also has 
@@ -9,6 +11,8 @@ package edu.ncsu.csc216.wolf_tasks.model.tasks;
 public class ActiveTaskList extends AbstractTaskList {
 	/** name of active task list */
 	public static final String ACTIVE_TASKS_NAME = "Active Tasks";
+
+	
 	
 	/**
 	 * constructor for active task list sets name of task list to active task list as well as
@@ -23,14 +27,20 @@ public class ActiveTaskList extends AbstractTaskList {
 	 * @param t task to be added
 	 */
 	public void addTask(Task t) {
-		
+		if (!t.isActive()) {
+			throw new IllegalArgumentException("Cannot add task to Active Tasks.");
+		}
+		super.addTask(t);
 	}
 	/**
 	 * sets the task lists name
 	 * @param taskListName task lists name
 	 */
 	public void setTaskListName(String taskListName) {
-		
+		if (taskListName != "Active Tasks") {
+			throw new IllegalArgumentException("The Active Tasks list may not be edited.");
+		}
+		super.setTaskListName(taskListName);
 	}
 	/**
 	 * gets the tasks as a 2d array of strings
@@ -43,7 +53,7 @@ public class ActiveTaskList extends AbstractTaskList {
 	 * clears all tasks
 	 */
 	public void clearTasks() {
-		
+		new ActiveTaskList();
 	}
 
 

@@ -2,9 +2,12 @@ package edu.ncsu.csc216.wolf_tasks.model.notebook;
 
 import java.io.File;
 
+import edu.ncsu.csc216.wolf_tasks.model.io.NotebookWriter;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.AbstractTaskList;
+import edu.ncsu.csc216.wolf_tasks.model.tasks.ActiveTaskList;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.Task;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.TaskList;
+import edu.ncsu.csc216.wolf_tasks.model.util.SortedList;
 
 /**
  * class for the NoteBook object it has a constructor
@@ -22,6 +25,12 @@ public class Notebook {
 	private String notebookName;
 	/** boolean for if notebook is changed */
 	private boolean isChanged;
+	/** holds current task list */
+	private AbstractTaskList currentTaskList;
+	/** holds task lists */
+	private SortedList<TaskList> taskLists;
+	/** holds active task list */
+	private ActiveTaskList activeTaskList;
 	/**
 	 * constructor for notebook sets the name and 
 	 * taskList is constructed as a sorted list and
@@ -30,14 +39,19 @@ public class Notebook {
 	 * @param notebookName notebook name
 	 */
 	public Notebook(String notebookName) {
-		
+		setNotebookName(notebookName);
+		taskLists = new SortedList<TaskList>();
+		getActiveTaskList();
+		currentTaskList = activeTaskList;
+		setChanged(true);
 	}
 	/**
 	 * saves the notebook to a file
 	 * @param notebookFile file to be saved to
 	 */
 	public void saveNotebook(File notebookFile) {
-		
+		NotebookWriter.writeNotebookFile(notebookFile, notebookName, taskLists);
+		setChanged(false);
 	}
 	
 	/**
@@ -45,35 +59,40 @@ public class Notebook {
 	 * @return notebook name
 	 */
 	public String getNotebookName() {
-		return null;
+		return notebookName;
 	}
 	/**
 	 * sets the notebooks name
 	 * @param notebookName note book name
+	 * @throws IllegalArgumentException if notebook name is null empty or equal to active tasks name
 	 */
 	private void setNotebookName(String notebookName) {
-		
+		if (notebookName == null || "".equals(notebookName) || notebookName.equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
+			throw new IllegalArgumentException();
+		}
+		this.notebookName = notebookName;
 	}
 	/**
 	 * checks if notebook is changed
 	 * @return true if changed false if not
 	 */
 	public boolean isChanged() {
-		return false;
+		return isChanged;
 	}
 	
 	/**
 	 * sets if not book is changed
 	 */
-	public void setChanged() {
-		
+	public void setChanged(boolean changed) {
+		isChanged = changed;
 	}
 	/**
 	 * adds a tasklist
 	 * @param taskList task list to be added
 	 */
 	public void addTaskList(TaskList taskList) {
-		
+		taskLists.add(taskList);
+		getActiveTaskList();
 	}
 	
 	/**
@@ -81,28 +100,45 @@ public class Notebook {
 	 * @return task lists names as string array
 	 */
 	public String[] getTaskListsNames() {
-		return null;
+		String[] array = new String[taskLists.size() + 1];
+		array[0] = activeTaskList.getTaskListName();
+		for (int i = 1; i <= taskLists.size(); i++) {
+			array[i] = taskLists.get(i - 1).getTaskListName();
+		}
+		return array;
 	}
 	/**
-	 * returns the active task list
-	 * @return task list active task list
+	 * creates an active task list with all active tasks in the notebook
 	 */
-	private TaskList getActiveTaskList() {
-		return null;
+	private void getActiveTaskList() {
+		activeTaskList = new ActiveTaskList();
+		for (int i = 0; i < taskLists.size(); i++) {
+			for (int j = 0; j < taskLists.get(i).getTasks().size(); i++) {
+				if (taskLists.get(i).getTask(i).isActive()) {
+					activeTaskList.addTask(taskLists.get(i).getTask(i));
+				}
+			}
+		}
 	}
 	/**
-	 * sets the current task list
+	 * sets the curret task list
 	 * @param taskListName name of task list
 	 */
 	public void setCurrentTaskList(String taskListName) {
-		
+		for (int i = 0; i < taskLists.size(); i++) {
+			if (taskLists.get(i).getTaskListName().equals(taskListName)) {
+				currentTaskList = taskLists.get(i);
+				return;
+			}
+		}
+		currentTaskList = activeTaskList;
 	}
 	/**
 	 * gets the current task list
 	 * @return task list
 	 */
 	public AbstractTaskList getCurrentTaskList() {
-		return null;
+		return currentTaskList;
 	}
 	/**
 	 * edits the task list name
@@ -122,7 +158,13 @@ public class Notebook {
 	 * @param t task to be added
 	 */
 	public void addTask(Task t) {
-		
+		if (currentTaskList.getClass().equals(TaskList.class)) {
+			currentTaskList.addTask(t);
+			if (t.isActive()) {
+				getActiveTaskList();
+			}
+			setChanged(true);
+		}
 	}
 	/**
 	 * edits a task at index

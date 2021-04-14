@@ -1,6 +1,9 @@
 package edu.ncsu.csc216.wolf_tasks.model.io;
 
 import java.io.File;
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 import edu.ncsu.csc216.wolf_tasks.model.notebook.Notebook;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.AbstractTaskList;
@@ -26,7 +29,7 @@ public class NotebookReader {
 	 * @param file file to be processed
 	 * @return notebook that is outlined in file
 	 */
-	public static Notebook readNodebookFile(File file) {
+	public static Notebook readNotebookFile(File file) {
 		return null;
 	}
 	/**
@@ -45,6 +48,41 @@ public class NotebookReader {
 	 * @return Task created from string
 	 */
 	private static Task processTask(AbstractTaskList ats, String s) {
+		String firstLine;
+		String taskName = null;
+		String taskDescription = null;
+		boolean active = false;
+		boolean recurring = false;
+		Scanner in = new Scanner(s);
+		try {
+			firstLine = in.nextLine();
+			while (in.hasNext()) {
+				taskDescription = in.nextLine();
+			}
+			Scanner task = new Scanner(firstLine);
+			task.useDelimiter(",");
+			while (task.hasNext()) {
+				String temp = task.next();
+				if (temp.equals("recurring")) {
+					recurring = true;
+				}
+				else if (temp.equals("active")) {
+					active = true;
+				}
+				else taskName = temp;
+			}
+			task.close();
+			
+		} catch (InputMismatchException e) {
+		in.close();
+		throw new IllegalArgumentException();
+		} catch (NoSuchElementException e) {
+		in.close();
+		throw new IllegalArgumentException();
+	}
+		Task task = new Task(taskName, taskDescription, recurring, active);
+		task.addTaskList(ats);
+		in.close();
 		return null;
 	}
 
