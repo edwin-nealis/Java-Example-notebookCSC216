@@ -113,9 +113,9 @@ public class Notebook {
 	private void getActiveTaskList() {
 		activeTaskList = new ActiveTaskList();
 		for (int i = 0; i < taskLists.size(); i++) {
-			for (int j = 0; j < taskLists.get(i).getTasks().size(); i++) {
-				if (taskLists.get(i).getTask(i).isActive()) {
-					activeTaskList.addTask(taskLists.get(i).getTask(i));
+			for (int j = 0; j < taskLists.get(i).getTasks().size(); j++) {
+				if (taskLists.get(i).getTask(j).isActive()) {
+					activeTaskList.addTask(taskLists.get(i).getTask(j));
 				}
 			}
 		}
@@ -145,13 +145,38 @@ public class Notebook {
 	 * @param taskListName task list name
 	 */
 	public void editTaskList(String taskListName) {
-		
+		if (currentTaskList.getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME) || taskListName.equalsIgnoreCase("Active Tasks")) {
+			throw new IllegalArgumentException();
+		}
+		for (int i = 0; i < taskLists.size(); i++) {
+			if (taskLists.get(i).getTaskListName().equalsIgnoreCase(taskListName)) {
+				throw new IllegalArgumentException();
+			}
+		}
+		TaskList temp = (TaskList) currentTaskList;
+		for (int i = 0; i < taskLists.size(); i++) {
+			if (taskLists.get(i).getTaskListName().equals(currentTaskList.getTaskListName())) {
+				taskLists.remove(i);
+			}
+		}
+		temp.setTaskListName(taskListName);
+		taskLists.add(temp);
+		this.setCurrentTaskList(taskListName);
 	}
 	/**
 	 * removes the current task list
 	 */
 	public void removeTaskList() {
-		
+		if (currentTaskList.getTaskListName().equals(activeTaskList.getTaskListName())) {
+			throw new IllegalArgumentException("The Active Tasks list may not be deleted.");
+		}
+		for (int i = 0; i < taskLists.size(); i++) {
+			if (taskLists.get(i).getTaskListName().equals(currentTaskList.getTaskListName())) {
+				taskLists.remove(i);
+			}
+		}
+		setChanged(true);
+		getActiveTaskList();
 	}
 	/**
 	 * adds a task to current task list
@@ -175,6 +200,15 @@ public class Notebook {
 	 * @param active if task is active
 	 */
 	public void editTask(int idx, String taskName, String taskDescription, boolean recurring, boolean active) {
-		
+		if (currentTaskList.getClass().equals(TaskList.class)) {
+			currentTaskList.getTask(idx).setActive(active);
+			currentTaskList.getTask(idx).setRecurring(recurring);
+			currentTaskList.getTask(idx).setTaskName(taskName);
+			currentTaskList.getTask(idx).setTaskDescription(taskDescription);
+			if (active) {
+				getActiveTaskList();
+			}
+			setChanged(true);
+		}
 	}
 }

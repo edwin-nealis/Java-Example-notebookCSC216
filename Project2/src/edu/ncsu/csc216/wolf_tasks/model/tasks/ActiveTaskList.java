@@ -47,7 +47,18 @@ public class ActiveTaskList extends AbstractTaskList {
 	 * @return 2d array of strings containing tasks
 	 */
 	public String[][] getTasksAsArray() {
-		return null;
+		String[][] array = new String[super.getTasks().size()][2];
+		for (int i = 0; i < super.getTasks().size(); i++) {
+			for (int j = 0 ; j < 2; j++) {
+				if (j == 0) {
+					array[i][j] = "Active Tasks";
+				}
+				if (j == 1) {
+					array[i][j] = super.getTask(i).getTaskName();
+				}
+			}
+		}
+		return array;
 	}
 	/**
 	 * clears all tasks

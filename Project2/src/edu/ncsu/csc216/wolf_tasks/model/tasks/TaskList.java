@@ -24,7 +24,18 @@ public class TaskList extends AbstractTaskList implements Comparable<TaskList> {
 	 * @return 2d array
 	 */
 	public String [][] getTasksAsArray() {
-		return null;
+		String[][] array = new String[super.getTasks().size()][2];
+		for (int i = 0; i < super.getTasks().size(); i++) {
+			for (int j = 0 ; j < 2; j++) {
+				if (j == 0) {
+					array[i][j] = super.getTask(i).getTaskListName();
+				}
+				if (j == 1) {
+					array[i][j] = super.getTask(i).getTaskName();
+				}
+			}
+		}
+		return array;
 	}
 	
 	/**
@@ -33,7 +44,12 @@ public class TaskList extends AbstractTaskList implements Comparable<TaskList> {
 	 * @return 0 if same 1 if larger -1 if smaller
 	 */
 	public int compareTo(TaskList tl) {
-		return 0;
+		if (super.getTaskListName().equals(tl.getTaskListName())) {
+			return 0;
+		}
+		else {
+		return super.getTaskListName().compareTo(tl.getTaskListName());
+		}
 	}
 
 }
