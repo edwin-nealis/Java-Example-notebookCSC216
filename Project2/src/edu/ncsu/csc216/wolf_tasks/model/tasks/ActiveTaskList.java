@@ -64,7 +64,9 @@ public class ActiveTaskList extends AbstractTaskList {
 	 * clears all tasks
 	 */
 	public void clearTasks() {
-		new ActiveTaskList();
+		for (int i = 0; i < super.getTasks().size(); i++) {
+			super.getTasks().remove(i);
+		}
 	}
 
 

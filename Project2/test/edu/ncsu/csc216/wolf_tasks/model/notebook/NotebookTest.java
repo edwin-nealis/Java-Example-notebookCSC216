@@ -86,6 +86,37 @@ public class NotebookTest {
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[4][1], array[4][1]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[5][0], array[5][0]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[5][1], array[5][1]);
+	}
+	@Test
+	public void testGetActive() {
+		Notebook nb = new Notebook("notebook 1");
+		TaskList tl1 = new TaskList("list 1", 7);
+		TaskList tl2 = new TaskList("list 2", 0);
+		TaskList tl3 = new TaskList("list 3", 14);
+		Task t1 = new Task("task 1", "descrption", false, true);
+		Task t2 = new Task("task 2", "descrption", false, true);
+		Task t3 = new Task("task 3", "descrption", true, true);
+		Task t4 = new Task("task 4", "descrption", false, true);
+		Task t5 = new Task("task 5", "descrption", true, false);
+		Task t6 = new Task("task 6", "descrption", false, true);
+		nb.addTaskList(tl1);
+		nb.addTaskList(tl2);
+		nb.addTaskList(tl3);
+		nb.setCurrentTaskList("list 1");
+		nb.addTask(t1);
+		nb.addTask(t2);
+		assertEquals(nb.getCurrentTaskList().getTasks().size(), 2);
+		nb.setCurrentTaskList("list 2");
+		nb.addTask(t3);
+		nb.addTask(t4);
+		assertEquals(nb.getCurrentTaskList().getTasks().size(), 2);
+		nb.setCurrentTaskList("list 3");
+		nb.addTask(t5);
+		nb.addTask(t6);
+		assertEquals(nb.getCurrentTaskList().getTasks().size(), 2);
+		assertEquals(nb.getTaskListsNames()[1], "list 1");
+		assertEquals(nb.getTaskListsNames()[2], "list 2");
+		assertEquals(nb.getTaskListsNames()[3], "list 3");
 		nb.setCurrentTaskList("Active Tasks"); //test get active tasks
 		String[][] array2 = new String[][] { { "Active Tasks", "task 1" }, { "Active Tasks", "task 2" }, { "Active Tasks", "task 3" }, { "Active Tasks", "task 4" }, { "Active Tasks", "task 6" } };
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[0][0], array2[0][0]);
@@ -98,9 +129,6 @@ public class NotebookTest {
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[3][1], array2[3][1]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[4][0], array2[4][0]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[4][1], array2[4][1]);
-		
-		
-		
 	}
 	/**
 	 * tests the editTask and editTaskList methods 
