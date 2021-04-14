@@ -91,7 +91,7 @@ public class TaskTest {
 			t.completeTask();
 			assertEquals(tl.getCompletedCount(), 1);
 			assertEquals(tl.getTasks().size(), 0);
-		} catch (CloneNotSupportedException e) {
+		} catch (IllegalArgumentException e) {
 			fail();
 		}
 		try {
@@ -101,7 +101,7 @@ public class TaskTest {
 			String[][] array = new String[][] { {"list 2", "name"} };
 			assertEquals(tl2.getTasksAsArray()[0][0], array[0][0]);
 			assertEquals(tl2.getTasksAsArray()[0][1], array[0][1]);
-		} catch (CloneNotSupportedException e) {
+		} catch (IllegalArgumentException e) {
 			fail();
 		}
 		
