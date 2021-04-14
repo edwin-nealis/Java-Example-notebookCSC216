@@ -36,10 +36,21 @@ public class SwapListTest {
 		assertEquals(list.size(), 10);
 		list.add("10"); //checks increase capacity
 		assertEquals(list.size(), 11);
-		for (int i =0; i < 10; i++) {
+		for (int i = 0; i < 11; i++) {
 			assertEquals(list.get(i), String.valueOf(i));
 		}
-		assertEquals(list.remove(5), "5");
+		assertEquals(list.remove(0), "0");
+		assertEquals(list.remove(4), "5");
+		assertEquals(list.remove(8), "10");
+		assertEquals(list.size(), 8);
+		assertEquals(list.get(0), "1");
+		assertEquals(list.get(1), "2");
+		assertEquals(list.get(2), "3");
+		assertEquals(list.get(3), "4");
+		assertEquals(list.get(4), "6");
+		assertEquals(list.get(5), "7");
+		assertEquals(list.get(6), "8");
+		assertEquals(list.get(7), "9");
 	}
 	/**
 	 * tests move up, down, to front, and to back

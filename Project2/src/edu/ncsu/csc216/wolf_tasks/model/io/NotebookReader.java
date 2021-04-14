@@ -29,7 +29,7 @@ public class NotebookReader {
 	 * @param file file to be processed
 	 * @return notebook that is outlined in file
 	 */
-	public static Notebook readNotebookFile(File file) {
+	public static Notebook readNodebookFile(File file) {
 		return null;
 	}
 	/**

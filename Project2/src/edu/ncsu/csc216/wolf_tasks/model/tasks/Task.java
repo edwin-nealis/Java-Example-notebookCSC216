@@ -132,6 +132,11 @@ public class Task {
 		if (atl == null || "".equals(atl)) {
 			throw new IllegalArgumentException("Incomplete task information.");
 		}
+		for (int i = 0; i < taskLists.size(); i++) {
+			if (taskLists.get(i).getTaskListName().equals(atl.getTaskListName())) {
+				return;
+			}
+		}
 		taskLists.add(atl);
 	}
 	
@@ -154,7 +159,17 @@ public class Task {
 	 * @return String with task info
 	 */
 	public String toString() {
-		return null;
+		String s = "";
+		String r = "";
+		String a = "";
+		if (isRecurring()) {
+			r = ",recurring";
+		}
+		if (isActive()) {
+			a = ",active";
+		}
+		s = "* " + getTaskName() + r + a + "\n" + getTaskDescription() + "\n";
+		return s;
 	}
 	
 	
