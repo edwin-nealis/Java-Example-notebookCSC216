@@ -58,6 +58,13 @@ public class NotebookReaderTest {
 		Notebook nb7 = NotebookReader.readNodebookFile(file8);
 		assertEquals(nb2.getNotebookName(), "Summer Plans");
 		assertEquals(nb2.getTaskListsNames().length, 1);
+		assertEquals(nb3.getNotebookName(), "School");
+		assertEquals(nb3.getTaskListsNames().length, 2);
+		nb3.setCurrentTaskList("CSC 216");
+		assertEquals(nb3.getCurrentTaskList().getTasks().size(), 0);
+		assertEquals(nb3.getTaskListsNames().length, 3);
+		nb3.setCurrentTaskList("CSC 226");
+		assertEquals(nb3.getCurrentTaskList().getTasks().size(), 4);
 		assertEquals(nb4.getNotebookName(), "Personal");
 		assertEquals(nb4.getTaskListsNames().length, 1);
 		assertEquals(nb5.getNotebookName(), "Personal");
