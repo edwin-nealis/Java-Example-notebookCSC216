@@ -28,7 +28,7 @@ public class Notebook {
 	/** holds current task list */
 	private AbstractTaskList currentTaskList;
 	/** holds task lists */
-	private SortedList<TaskList> taskLists;
+	public SortedList<TaskList> taskLists;
 	/** holds active task list */
 	private ActiveTaskList activeTaskList;
 	/**
