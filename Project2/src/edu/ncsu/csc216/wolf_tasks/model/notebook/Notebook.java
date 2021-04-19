@@ -96,6 +96,7 @@ public class Notebook {
 		}
 		taskLists.add(taskList);
 		getActiveTaskList();
+		this.setCurrentTaskList(taskList.getTaskListName());
 	}
 	
 	/**
