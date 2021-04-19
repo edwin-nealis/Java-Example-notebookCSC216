@@ -47,7 +47,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 			}
 			else {
 				if (front.data.equals(element)) {
-					throw new IllegalArgumentException("Cannot add duplicate element");
+					throw new IllegalArgumentException("Cannot add duplicate element.");
 				}
 				front.next = new ListNode(element, null);
 				size++;
@@ -58,7 +58,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 		ListNode next = current.next;
 		while (next != null) {
 			if (current.data.equals(element)) {
-				throw new IllegalArgumentException("Cannot add duplicate element");
+				throw new IllegalArgumentException("Cannot add duplicate element.");
 			}
 			next = next.next;
 			current = current.next;
