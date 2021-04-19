@@ -35,6 +35,7 @@ public class NotebookTest {
 		TaskList tl4 = new TaskList("list 4", 90);
 		TaskList tl5 = new TaskList("list 5", 23);
 		TaskList tl6 = new TaskList("list 6", 2);
+		TaskList tl7 = new TaskList("list 6", 2);
 		nb.addTaskList(tl1); // tests add task list
 		nb.addTaskList(tl2);
 		nb.addTaskList(tl3);
@@ -48,6 +49,19 @@ public class NotebookTest {
 		assertEquals(nb.getTaskListsNames()[4], "list 4");
 		assertEquals(nb.getTaskListsNames()[5], "list 5");
 		assertEquals(nb.getTaskListsNames()[6], "list 6");
+		try {
+			nb.addTaskList(tl7);
+			fail();
+		}
+		catch (IllegalArgumentException e) {
+			assertEquals(nb.getTaskListsNames()[0], "Active Tasks");
+			assertEquals(nb.getTaskListsNames()[1], "list 1");
+			assertEquals(nb.getTaskListsNames()[2], "list 2");
+			assertEquals(nb.getTaskListsNames()[3], "list 3");
+			assertEquals(nb.getTaskListsNames()[4], "list 4");
+			assertEquals(nb.getTaskListsNames()[5], "list 5");
+			assertEquals(nb.getTaskListsNames()[6], "list 6");
+		}
 		nb.setCurrentTaskList("list 6");//tests remove task list and set current task
 		nb.removeTaskList();
 		nb.setCurrentTaskList("list 1");
@@ -66,6 +80,7 @@ public class NotebookTest {
 		Task t4 = new Task("task 4", "descrption", false, true);
 		Task t5 = new Task("task 5", "descrption", true, false);
 		Task t6 = new Task("task 6", "descrption", false, true);
+		Task t7 = new Task("task 6", "description", false, false);
 		nb.setCurrentTaskList("list 2"); //tests add task 
 		nb.addTask(t1);
 		nb.addTask(t2);

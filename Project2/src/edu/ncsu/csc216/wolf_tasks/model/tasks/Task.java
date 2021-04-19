@@ -144,7 +144,7 @@ public class Task {
 		if (atl == null) {
 			throw new IllegalArgumentException("Incomplete task information.");
 		}
-		for (int i = 0; i < taskLists.size(); i++) {
+		for (int i = 0 ; i < taskLists.size(); i++) {
 			if (taskLists.get(i).getTaskListName().equals(atl.getTaskListName())) {
 				return;
 			}
