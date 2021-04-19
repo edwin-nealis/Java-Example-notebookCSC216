@@ -68,7 +68,7 @@ public class Notebook {
 	 */
 	private void setNotebookName(String notebookName) {
 		if (notebookName == null || "".equals(notebookName) || notebookName.equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid name.");
 		}
 		this.notebookName = notebookName;
 	}
@@ -92,7 +92,7 @@ public class Notebook {
 	 */
 	public void addTaskList(TaskList taskList) {
 		if (taskList.getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid name.");
 		}
 		taskLists.add(taskList);
 		getActiveTaskList();
@@ -186,7 +186,7 @@ public class Notebook {
 	 * @param t task to be added
 	 */
 	public void addTask(Task t) {
-		if (currentTaskList.getClass().equals(TaskList.class)) {
+		if (currentTaskList.getClass() == TaskList.class) {
 			currentTaskList.addTask(t);
 			if (t.isActive()) {
 				getActiveTaskList();
