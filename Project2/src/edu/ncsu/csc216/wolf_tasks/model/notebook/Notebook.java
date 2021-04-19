@@ -181,6 +181,7 @@ public class Notebook {
 		}
 		setChanged(true);
 		getActiveTaskList();
+		this.setCurrentTaskList(ActiveTaskList.ACTIVE_TASKS_NAME);
 	}
 	/**
 	 * adds a task to current task list
