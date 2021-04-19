@@ -91,6 +91,9 @@ public class Notebook {
 	 * @param taskList task list to be added
 	 */
 	public void addTaskList(TaskList taskList) {
+		if (taskList.getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
+			throw new IllegalArgumentException();
+		}
 		taskLists.add(taskList);
 		getActiveTaskList();
 	}

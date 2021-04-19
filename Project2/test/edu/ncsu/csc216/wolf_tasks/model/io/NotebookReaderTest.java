@@ -59,12 +59,12 @@ public class NotebookReaderTest {
 		assertEquals(nb2.getNotebookName(), "Summer Plans");
 		assertEquals(nb2.getTaskListsNames().length, 1);
 		assertEquals(nb3.getNotebookName(), "School");
-		assertEquals(nb3.getTaskListsNames().length, 2);
+		assertEquals(nb3.getTaskListsNames().length, 4);
 		nb3.setCurrentTaskList("CSC 216");
 		assertEquals(nb3.getCurrentTaskList().getTasks().size(), 0);
-		assertEquals(nb3.getTaskListsNames().length, 3);
+		assertEquals(nb3.getTaskListsNames().length, 4);
 		nb3.setCurrentTaskList("CSC 226");
-		assertEquals(nb3.getCurrentTaskList().getTasks().size(), 4);
+		assertEquals(nb3.getCurrentTaskList().getTasks().size(), 5);
 		assertEquals(nb4.getNotebookName(), "Personal");
 		assertEquals(nb4.getTaskListsNames().length, 1);
 		assertEquals(nb5.getNotebookName(), "Personal");
