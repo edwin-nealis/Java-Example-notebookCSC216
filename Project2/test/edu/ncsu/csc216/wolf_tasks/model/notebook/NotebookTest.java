@@ -73,7 +73,7 @@ public class NotebookTest {
 		nb.addTask(t4);
 		nb.addTask(t5);
 		nb.addTask(t6);
-		String[][] array = new String[][] { { "list 2", "task 1" }, { "list 2", "task 2" }, { "list 2", "task 3" }, { "list 2", "task 4" }, {"list 2", "task 5" }, { "list 2", "task 6" } };
+		String[][] array = new String[][] { { "1", "task 1" }, { "2", "task 2" }, { "3", "task 3" }, { "4", "task 4" }, {"5", "task 5" }, { "6", "task 6" } };
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[0][0], array[0][0]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[0][1], array[0][1]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[1][0], array[1][0]);
@@ -169,7 +169,7 @@ public class NotebookTest {
 		nb.addTask(t1);
 		nb.addTask(t2);
 		nb.addTask(t3);
-		String[][] array = new String[][] { { "list 2", "task 1" }, { "list 2", "task 2" }, { "list 2", "task 3" } };
+		String[][] array = new String[][] { { "1", "task 1" }, { "2", "task 2" }, { "3", "task 3" } };
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[0][0], array[0][0]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[0][1], array[0][1]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[1][0], array[1][0]);
@@ -177,7 +177,7 @@ public class NotebookTest {
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[2][0], array[2][0]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[2][1], array[2][1]);
 		nb.editTask(1, "new task 2", " new decription", true, false);
-		String[][] array2 = new String[][] { { "list 2", "task 1" }, { "list 2", "new task 2" }, { "list 2", "task 3" } };
+		String[][] array2 = new String[][] { { "1", "task 1" }, { "2", "new task 2" }, { "3", "task 3" } };
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[0][0], array2[0][0]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[0][1], array2[0][1]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[1][0], array2[1][0]);

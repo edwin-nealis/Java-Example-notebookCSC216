@@ -35,7 +35,7 @@ public class TaskListTest {
 		tl1.addTask(t3);
 		tl1.addTask(t2);
 		tl1.addTask(t);
-		String[][] array = new String[][] { { "a", "task 3" }, { "a", "task 2" }, { "a", "task 1" } };
+		String[][] array = new String[][] { { "1", "task 3" }, { "2", "task 2" }, { "3", "task 1" } };
 		assertEquals(tl1.getTasksAsArray()[0][0], array[0][0]);
 		assertEquals(tl1.getTasksAsArray()[0][1], array[0][1]);
 		assertEquals(tl1.getTasksAsArray()[1][0], array[1][0]);

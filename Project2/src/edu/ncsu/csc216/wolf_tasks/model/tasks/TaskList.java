@@ -28,7 +28,7 @@ public class TaskList extends AbstractTaskList implements Comparable<TaskList> {
 		for (int i = 0; i < super.getTasks().size(); i++) {
 			for (int j = 0 ; j < 2; j++) {
 				if (j == 0) {
-					array[i][j] = super.getTask(i).getTaskListName();
+					array[i][j] = String.valueOf(i + 1);
 				}
 				if (j == 1) {
 					array[i][j] = super.getTask(i).getTaskName();

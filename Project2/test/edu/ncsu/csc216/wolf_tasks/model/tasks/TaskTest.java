@@ -98,7 +98,7 @@ public class TaskTest {
 			t2.completeTask();
 			assertEquals(tl2.getCompletedCount(), 1);
 			assertEquals(tl2.getTasks().size(), 1);
-			String[][] array = new String[][] { {"list 2", "name"} };
+			String[][] array = new String[][] { {"1", "name"} };
 			assertEquals(tl2.getTasksAsArray()[0][0], array[0][0]);
 			assertEquals(tl2.getTasksAsArray()[0][1], array[0][1]);
 		} catch (IllegalArgumentException e) {
