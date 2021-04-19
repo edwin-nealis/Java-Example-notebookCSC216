@@ -51,7 +51,7 @@ public class ActiveTaskList extends AbstractTaskList {
 		for (int i = 0; i < super.getTasks().size(); i++) {
 			for (int j = 0 ; j < 2; j++) {
 				if (j == 0) {
-					array[i][j] = "Active Tasks";
+					array[i][j] = super.getTask(i).getTaskListName();
 				}
 				if (j == 1) {
 					array[i][j] = super.getTask(i).getTaskName();
