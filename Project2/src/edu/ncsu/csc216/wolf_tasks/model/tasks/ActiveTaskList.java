@@ -37,7 +37,7 @@ public class ActiveTaskList extends AbstractTaskList {
 	 * @param taskListName task lists name
 	 */
 	public void setTaskListName(String taskListName) {
-		if (!taskListName.equals("Active Tasks")) {
+		if (!taskListName.equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
 			throw new IllegalArgumentException("The Active Tasks list may not be edited.");
 		}
 		super.setTaskListName(taskListName);
