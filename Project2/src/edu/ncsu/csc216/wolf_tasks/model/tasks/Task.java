@@ -137,7 +137,7 @@ public class Task {
 		try {
 			return this.taskLists.get(0).getTaskListName();
 		}catch (IndexOutOfBoundsException e) {
-			return null;
+			return "";
 		}
 	}
 	/**
