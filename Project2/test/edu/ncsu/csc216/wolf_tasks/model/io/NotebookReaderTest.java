@@ -7,6 +7,7 @@ import java.io.File;
 import org.junit.Test;
 
 import edu.ncsu.csc216.wolf_tasks.model.notebook.Notebook;
+import edu.ncsu.csc216.wolf_tasks.model.tasks.ActiveTaskList;
 /**
  * tests the notebookReader class
  * @author edwin
@@ -125,6 +126,8 @@ public class NotebookReaderTest {
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[0][1], array3[0][1]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[1][0], array3[1][0]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[1][1], array3[1][1]);
+		nb.setCurrentTaskList(ActiveTaskList.ACTIVE_TASKS_NAME);
+		assertEquals(nb.getCurrentTaskList().getTasks().size(), 5);
 		
 	}
 	/**
