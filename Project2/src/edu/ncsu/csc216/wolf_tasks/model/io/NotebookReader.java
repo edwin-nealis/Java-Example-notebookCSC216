@@ -139,9 +139,9 @@ public class NotebookReader {
 			task.useDelimiter(",");
 			while (task.hasNext()) {
 				String temp = task.next();
-				if (temp.equals("recurring")) {
+				if ("recurring".equals(temp)) {
 					recurring = true;
-				} else if (temp.equals("active")) {
+				} else if ("active".equals(temp)) {
 					active = true;
 				} else
 					taskName = temp;

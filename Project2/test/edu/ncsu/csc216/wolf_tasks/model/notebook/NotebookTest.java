@@ -62,7 +62,7 @@ public class NotebookTest {
 			assertEquals(nb.getTaskListsNames()[5], "list 5");
 			assertEquals(nb.getTaskListsNames()[6], "list 6");
 		}
-		nb.setCurrentTaskList("list 6");//tests remove task list and set current task
+		nb.setCurrentTaskList("list 6"); //tests remove task list and set current task
 		nb.removeTaskList();
 		nb.setCurrentTaskList("list 1");
 		nb.removeTaskList();
@@ -101,6 +101,9 @@ public class NotebookTest {
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[5][0], array[5][0]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[5][1], array[5][1]);
 	}
+	/**
+	 * tests the get active method
+	 */
 	@Test
 	public void testGetActive() {
 		Notebook nb = new Notebook("notebook 1");

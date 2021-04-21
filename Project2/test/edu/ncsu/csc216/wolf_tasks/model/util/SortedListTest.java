@@ -15,7 +15,7 @@ public class SortedListTest {
 	 */
 	@Test
 	public void testAddAndRemove() {
-		SortedList <String> list = new SortedList<String>();
+		SortedList<String> list = new SortedList<String>();
 		list.add("a");
 		list.add("d");
 		list.add("c");
@@ -100,7 +100,7 @@ public class SortedListTest {
 	 */
 	@Test
 	public void testContains() {
-		SortedList <String> list = new SortedList<String>();
+		SortedList<String> list = new SortedList<String>();
 		list.add("a");
 		list.add("d");
 		list.add("c");

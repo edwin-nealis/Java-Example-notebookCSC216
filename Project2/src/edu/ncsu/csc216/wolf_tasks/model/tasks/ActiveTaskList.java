@@ -37,7 +37,7 @@ public class ActiveTaskList extends AbstractTaskList {
 	 * @param taskListName task lists name
 	 */
 	public void setTaskListName(String taskListName) {
-		if (taskListName != "Active Tasks") {
+		if (!taskListName.equals("Active Tasks")) {
 			throw new IllegalArgumentException("The Active Tasks list may not be edited.");
 		}
 		super.setTaskListName(taskListName);
@@ -49,7 +49,7 @@ public class ActiveTaskList extends AbstractTaskList {
 	public String[][] getTasksAsArray() {
 		String[][] array = new String[super.getTasks().size()][2];
 		for (int i = 0; i < super.getTasks().size(); i++) {
-			for (int j = 0 ; j < 2; j++) {
+			for (int j = 0; j < 2; j++) {
 				if (j == 0) {
 					array[i][j] = super.getTask(i).getTaskListName();
 				}

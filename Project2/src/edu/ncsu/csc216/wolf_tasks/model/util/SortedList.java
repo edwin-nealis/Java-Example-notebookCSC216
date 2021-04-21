@@ -13,10 +13,12 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	private int size;
 	/** keeps track of the first node in list */
 	private ListNode front;
-	
+	/**
+	 * constructor for sorted list sets front to a null list node and size 0
+	 */
 	public SortedList() {
 		front = new ListNode(null, null);
-		size =0;
+		size = 0;
 	}
 
 	/**

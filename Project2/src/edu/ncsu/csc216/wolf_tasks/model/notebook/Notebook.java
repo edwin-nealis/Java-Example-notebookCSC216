@@ -82,6 +82,7 @@ public class Notebook {
 	
 	/**
 	 * sets if not book is changed
+	 * @param changed boolean if changed
 	 */
 	public void setChanged(boolean changed) {
 		isChanged = changed;
@@ -157,7 +158,7 @@ public class Notebook {
 		if (currentTaskList.getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
 			throw new IllegalArgumentException("The Active Tasks list may not be edited.");
 		}
-		if (taskListName.equalsIgnoreCase("Active Tasks")) {
+		if (taskListName.equalsIgnoreCase(ActiveTaskList.ACTIVE_TASKS_NAME)) {
 			throw new IllegalArgumentException("Invalid name.");
 		}
 		for (int i = 0; i < taskLists.size(); i++) {
