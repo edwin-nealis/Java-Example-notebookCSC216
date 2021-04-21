@@ -32,16 +32,16 @@ public class NotebookReaderTest {
 	/** holds array of taskLists names in array form*/
 	String[] taskLists = new String[] { "CSC 216", "CSC 226", "Habits" };
 	/** holds expected task values for CSCS 216*/
-	String[][] array = new String[][] { { "CSC 216", "Read Project 2 requirements"}, 
-		{ "CSC 216", "Create CRC Cards to UMLetino" }, { "CSC 216", "Transfer CRC Cards to UMLetino" },
-		{ "CSC 216", "Download design proposal and rational template" }, { "CSC 216", "Write design proposal and rationale" },
-		{ "CSC 216", "Identify 5 system tests" }, { "CSC 216", "Watch lecture video" },
-		{ "CSC 216", "Complete exercises" }, { "CSC 216", "Complete quizzes" } };
+	String[][] array = new String[][] { { "1", "Read Project 2 Requirements"}, 
+		{ "2", "Create CRC Cards" }, { "3", "Transfer CRC Cards to UMLetino" },
+		{ "4", "Download design proposal and rational template" }, { "5", "Write design proposal and rationale" },
+		{ "6", "Identify 5 system tests" }, { "7", "Watch lecture video" },
+		{ "8", "Complete exercises" }, { "9", "Complete quizzes" } };
 	/** holds the expected task values for CSC 226 */ 
-	String [][] array2 = new String[][] { { "CSC 226", "Homework 7" }, { "CSC 226", "Homework 8" }, { "CSC 226", "Homework 9" }, 
-		{ "CSC 226", "Homework 10" }, { "CSC 226", "Watch lectures" } }; 
+	String [][] array2 = new String[][] { { "1", "Homework 7" }, { "2", "Homework 8" }, { "3", "Homework 9" }, 
+		{ "4", "Homework 10" }, { "5", "Watch lectures" } }; 
 	/** holds the expected task values for Habits */
-	String[][] array3 = new String[][] { { "Habits", "Excercise" }, { "Habits", "Floss" } };
+	String[][] array3 = new String[][] { { "1", "Exercise" }, { "2", "Floss" } };
 		
 
 	/** 
@@ -64,7 +64,7 @@ public class NotebookReaderTest {
 		assertEquals(nb3.getCurrentTaskList().getTasks().size(), 0);
 		assertEquals(nb3.getTaskListsNames().length, 4);
 		nb3.setCurrentTaskList("CSC 226");
-		assertEquals(nb3.getCurrentTaskList().getTasks().size(), 5);
+		assertEquals(nb3.getCurrentTaskList().getTasks().size(), 4);
 		assertEquals(nb4.getNotebookName(), "Personal");
 		assertEquals(nb4.getTaskListsNames().length, 1);
 		assertEquals(nb5.getNotebookName(), "Personal");
@@ -76,11 +76,11 @@ public class NotebookReaderTest {
 		assertEquals(nb7.getTaskListsNames()[1], "Habits");
 		nb7.setCurrentTaskList("Habits");
 		assertEquals(nb7.getCurrentTaskList().getCompletedCount(), 3);
-		assertEquals(nb7.getCurrentTaskList().getTasksAsArray()[0][0], "Habits");
+		assertEquals(nb7.getCurrentTaskList().getTasksAsArray()[0][0], "1");
 		assertEquals(nb7.getCurrentTaskList().getTasksAsArray()[0][1], "Floss");
 		assertEquals(nb7.getCurrentTaskList().getTasks().size(), 1);
 
-		nb.setCurrentTaskList("CSC 16");
+		nb.setCurrentTaskList("CSC 216");
 		assertEquals(nb.getNotebookName(), "School");
 		assertEquals(nb.getTaskListsNames()[1], taskLists[0]);
 		assertEquals(nb.getTaskListsNames()[2], taskLists[1]);
@@ -106,7 +106,7 @@ public class NotebookReaderTest {
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[8][0], array[8][0]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[8][1], array[8][1]);
 		nb.setCurrentTaskList("CSC 226");
-		assertEquals(nb.getCurrentTaskList().getTasks().size(), 6);
+		assertEquals(nb.getCurrentTaskList().getTasks().size(), 5);
 		assertEquals(nb.getCurrentTaskList().getCompletedCount(), 23);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[0][0], array2[0][0]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[0][1], array2[0][1]);
@@ -118,12 +118,9 @@ public class NotebookReaderTest {
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[3][1], array2[3][1]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[4][0], array2[4][0]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[4][1], array2[4][1]);
-		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[5][0], array2[5][0]);
-		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[5][1], array2[5][1]);
 		nb.setCurrentTaskList("Habits");
 		assertEquals(nb.getCurrentTaskList().getTasks().size(), 2);
 		assertEquals(nb.getCurrentTaskList().getCompletedCount(), 0);
-		assertEquals(nb.getCurrentTaskList().getCompletedCount(), 35);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[0][0], array3[0][0]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[0][1], array3[0][1]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[1][0], array3[1][0]);

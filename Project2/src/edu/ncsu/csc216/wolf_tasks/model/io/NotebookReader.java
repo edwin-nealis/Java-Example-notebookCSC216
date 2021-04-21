@@ -105,7 +105,7 @@ public class NotebookReader {
 				try {
 					task = in.next();
 				task = task.trim();
-				Task t = processTask(tl, s);
+				Task t = processTask(tl, task);
 				tl.addTask(t);
 		} catch (IllegalArgumentException e) {
 			// blank on purpose
@@ -129,12 +129,9 @@ public class NotebookReader {
 		boolean active = false;
 		boolean recurring = false;
 		Scanner in = new Scanner(s);
-		in.useDelimiter("\\r?\\n?");
 		try {
 			firstLine = in.nextLine();
-			while (in.hasNext()) {
-				taskDescription = in.nextLine();
-			}
+				taskDescription = s.substring(firstLine.length());
 			Scanner task = new Scanner(firstLine);
 			task.useDelimiter(",");
 			while (task.hasNext()) {
@@ -155,8 +152,6 @@ public class NotebookReader {
 			in.close();
 			throw new IllegalArgumentException();
 		}
-		taskName = taskName.substring(1);
-		taskName = taskName.trim();
 		Task task = new Task(taskName, taskDescription, recurring, active);
 		task.addTaskList(ats);
 		in.close();
