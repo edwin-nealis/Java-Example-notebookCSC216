@@ -154,8 +154,11 @@ public class Notebook {
 	 * @param taskListName task list name
 	 */
 	public void editTaskList(String taskListName) {
-		if (currentTaskList.getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME) || taskListName.equalsIgnoreCase("Active Tasks")) {
+		if (currentTaskList.getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
 			throw new IllegalArgumentException("The Active Tasks list may not be edited.");
+		}
+		if (taskListName.equalsIgnoreCase("Active Tasks")) {
+			throw new IllegalArgumentException("Invalid name.");
 		}
 		for (int i = 0; i < taskLists.size(); i++) {
 			if (taskLists.get(i).getTaskListName().equalsIgnoreCase(taskListName)) {
@@ -169,8 +172,7 @@ public class Notebook {
 			}
 		}
 		temp.setTaskListName(taskListName);
-		taskLists.add(temp);
-		this.setCurrentTaskList(taskListName);
+		this.addTaskList(temp);
 	}
 	/**
 	 * removes the current task list
@@ -215,9 +217,7 @@ public class Notebook {
 			currentTaskList.getTask(idx).setRecurring(recurring);
 			currentTaskList.getTask(idx).setTaskName(taskName);
 			currentTaskList.getTask(idx).setTaskDescription(taskDescription);
-			if (active) {
-				getActiveTaskList();
-			}
+			getActiveTaskList();
 			setChanged(true);
 		}
 	}
