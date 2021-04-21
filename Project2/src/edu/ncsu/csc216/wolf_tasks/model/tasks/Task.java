@@ -134,7 +134,11 @@ public class Task {
 	 * @return task lists name
 	 */
 	public String getTaskListName() {
-		return this.taskLists.get(0).getTaskListName();
+		try {
+			return this.taskLists.get(0).getTaskListName();
+		}catch (IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 	/**
 	 * adds a task list
