@@ -163,8 +163,8 @@ public class NotebookTest {
 		nb.editTaskList("list 0");
 		assertEquals(nb.getCurrentTaskList().getTaskListName(), "list 0");
 		assertEquals(nb.getTaskListsNames()[0], "Active Tasks");
-		assertEquals(nb.getTaskListsNames()[1], "list 1");
-		assertEquals(nb.getTaskListsNames()[2], "list 0");
+		assertEquals(nb.getTaskListsNames()[1], "list 0");
+		assertEquals(nb.getTaskListsNames()[2], "list 1");
 		assertEquals(nb.getTaskListsNames()[3], "list 3");
 	}
 	/**
