@@ -80,7 +80,6 @@ public class NotebookTest {
 		Task t4 = new Task("task 4", "descrption", false, true);
 		Task t5 = new Task("task 5", "descrption", true, false);
 		Task t6 = new Task("task 6", "descrption", false, true);
-		Task t7 = new Task("task 6", "description", false, false);
 		nb.setCurrentTaskList("list 2"); //tests add task 
 		nb.addTask(t1);
 		nb.addTask(t2);
@@ -133,7 +132,7 @@ public class NotebookTest {
 		assertEquals(nb.getTaskListsNames()[2], "list 2");
 		assertEquals(nb.getTaskListsNames()[3], "list 3");
 		nb.setCurrentTaskList("Active Tasks"); //test get active tasks
-		String[][] array2 = new String[][] { { "Active Tasks", "task 1" }, { "Active Tasks", "task 2" }, { "Active Tasks", "task 3" }, { "Active Tasks", "task 4" }, { "Active Tasks", "task 6" } };
+		String[][] array2 = new String[][] { { "list 1", "task 1" }, { "list 1", "task 2" }, { "list 2", "task 3" }, { "list 2", "task 4" }, { "list 3", "task 6" } };
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[0][0], array2[0][0]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[0][1], array2[0][1]);
 		assertEquals(nb.getCurrentTaskList().getTasksAsArray()[1][0], array2[1][0]);

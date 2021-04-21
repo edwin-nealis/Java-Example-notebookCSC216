@@ -64,6 +64,11 @@ public class SwapList<E> implements ISwapList<E> {
 	public E remove(int idx) {
 		checkIndex(idx);
 		E temp = list[idx];
+		if (size == 1) {
+			list[0] = null;
+			size--;
+			return temp;
+		}
 		for (int i = idx; i < size - 1; i++) {
 			list[i] = list[i + 1];
 		}
@@ -77,7 +82,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 * @param idx index
 	 */
 	private void checkIndex(int idx) {
-		if (idx < 0 || idx >= size) {
+		if (idx < 0 || idx > size) {
 			throw new IndexOutOfBoundsException("Invalid index.");
 		}
 	}
