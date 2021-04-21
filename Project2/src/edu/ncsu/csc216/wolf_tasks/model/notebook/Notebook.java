@@ -162,7 +162,7 @@ public class Notebook {
 		}
 		for (int i = 0; i < taskLists.size(); i++) {
 			if (taskLists.get(i).getTaskListName().equalsIgnoreCase(taskListName)) {
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Invalid name.");
 			}
 		}
 		TaskList temp = (TaskList) currentTaskList;

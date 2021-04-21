@@ -94,7 +94,9 @@ public class SwapList<E> implements ISwapList<E> {
 	@Override
 	public void moveUp(int idx) {
 		checkIndex(idx);
-		checkIndex(idx - 1);
+		if (idx == 0) {
+			return;
+		}
 		E temp = list[idx - 1];
 		list[idx - 1] = list[idx];
 		list[idx] = temp;
@@ -107,7 +109,9 @@ public class SwapList<E> implements ISwapList<E> {
 	@Override
 	public void moveDown(int idx) {
 		checkIndex(idx);
-		checkIndex(idx + 1);
+		if (idx == size - 1) {
+			return;
+		}
 		E temp = list[idx + 1];
 		list[idx + 1] = list[idx];
 		list[idx] = temp;
