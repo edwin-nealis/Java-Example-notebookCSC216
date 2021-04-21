@@ -184,7 +184,7 @@ public class Task {
 		if (isActive()) {
 			a = ",active";
 		}
-		s = "* " + getTaskName() + r + a + "\n" + getTaskDescription() + "\n";
+		s = "* " + getTaskName() + r + a + "\n" + getTaskDescription();
 		return s;
 	}
 	
