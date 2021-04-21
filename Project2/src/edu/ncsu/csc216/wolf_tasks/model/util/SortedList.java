@@ -105,7 +105,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 * @param idx index
 	 */
 	private void checkIndex(int idx) {
-		if (idx < 0 || idx > size) {
+		if (idx < 0 || idx >= size) {
 			throw new IndexOutOfBoundsException("Invalid index.");
 		}
 	}
