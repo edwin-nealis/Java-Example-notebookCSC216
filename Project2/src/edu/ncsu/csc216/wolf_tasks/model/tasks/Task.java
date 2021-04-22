@@ -91,7 +91,7 @@ public class Task {
 	 * @param taskDescription tasks description
 	 */
 	public void setTaskDescription(String taskDescription) {
-		if (taskDescription == null || "".equals(taskDescription)) {
+		if (taskDescription == null) {
 			throw new IllegalArgumentException("Incomplete task information.");
 		}
 		this.taskDescription = taskDescription;
