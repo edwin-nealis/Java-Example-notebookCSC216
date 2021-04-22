@@ -42,7 +42,7 @@ public class Task {
 
 	/**
 	 * completes a task
-	 * @throws CloneNotSupportedException if clone cant not be done
+	 * @throws IllegalArgumentException if clone can not be done
 	 */
 	public void completeTask()  {
 		for (int i = 0; i < taskLists.size(); i++) {
